@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  service-api:
+    container_name: service-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SERVER_ADDRESS=${SERVER_ADDRESS}
+      - POSTGRES_CONN=${POSTGRES_CONN}
+      - TIMEOUT=10s
+      - IDLE_TIMEOUT=60s
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+  db:
+    image: postgres:15.1
+    volumes:
+      - ./internal/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: ${DB_DOCKER_CONTAINER}
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
