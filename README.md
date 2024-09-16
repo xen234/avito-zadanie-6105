@@ -14,6 +14,16 @@ docker-compose up --build
 
 Команда соберет проект и автоматически инициализирует нужные таблицы из /internal/db/init.sql.
 
+## Реализованный функционал 
+| Название группы    | Ручки                                  
+| ------------------ | -------------------------------------- 
+| 01/ping            | - /ping
+| 02/tenders/new     | - /tenders/new
+| 03/tenders/list    | - /tenders<br>- /tenders/my
+| 04/tenders/status  | - /tenders/status
+| 05/tenders/version | - /tenders/edit
+| 06/bids/new        | - /bids/new
+| 07/bids/list      | /bids/my
 
 ## Запуск тестов
 
@@ -497,5 +507,12 @@ Response:
 | 03/tenders/list    | - /tenders<br>- /tenders/my            | 5     | - 02/tenders/new       |
 | 04/tenders/status  | - /tenders/status                      | 3     | - 02/tenders/new       |
 | 05/tenders/version | - /tenders/edit<br>- /tenders/rollback | 6     | - 02/tenders/new       |
+| 06/bids/new        | - /bids/new                            | 2     |                        |
+| 07/bids/decision   | - /bids/submit_decision                | 3/6   | - 06/bids/new          |
+| 08/bids/list       | - /bids/list<br>- /bids/my             | 5     | - 06/bids/new          |
+| 09/bids/status     | - /bids/status                         | 3     | - 06/bids/new          |
+| 10/bids/version    | - /bids/edit<br>- /bids/rollback       | 6     | - 06/bids/new          |
+| 11/bids/feedback   | - /bids/reviews<br>- /bids/feedback    | 7     | - 06/bids/new          |
+
 
 
